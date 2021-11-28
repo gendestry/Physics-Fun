@@ -14,7 +14,7 @@ private:
 
 	ResourceManager m_ResManager;
 
-	unsigned int tVao, tVbo, tEbo;
+	unsigned int tVao, tVbo;
 public:
 	Application(unsigned int width, unsigned int height, GLFWwindow* window);
 	~Application();

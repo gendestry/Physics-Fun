@@ -3,8 +3,8 @@
 #include <iostream>
 #include "Application.h"
 
-const int WIDTH = 800;
-const int HEIGHT = 608;
+const int WIDTH = 1280;
+const int HEIGHT = 720;
 
 GLFWwindow* window;
 Application* app;
