@@ -1,4 +1,5 @@
 #include "Application.h"
+#include <glad/gl.h>
 #include <glm/gtc/matrix_transform.hpp>
 
 Application::Application(unsigned int width, unsigned int height, GLFWwindow* window) 

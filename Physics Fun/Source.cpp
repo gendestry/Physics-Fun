@@ -1,4 +1,4 @@
-#include <GL/glew.h>
+#include <glad/gl.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include "Application.h"
@@ -21,12 +21,16 @@ void init() {
 	if (!window) {
 		std::cerr << "[GLFW] Window not created!" << std::endl;
 		glfwTerminate();
+		return;
 	}
 
 	glfwMakeContextCurrent(window);
 
-	if (glewInit() != 0)
-		std::cerr << "[GLEW] Could not initialise!" << std::endl;
+	if (!gladLoadGL(glfwGetProcAddress)) {
+		std::cerr << "[GLAD] Could not initialise!" << std::endl;
+		glfwTerminate();
+		return;
+	}
 
 	glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
 	glEnable(GL_DEPTH_TEST);
