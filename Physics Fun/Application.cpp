@@ -120,13 +120,24 @@ void Application::update(double dt) {
 
 }
 
-void Application::render() {
+void Application::render(double dt) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	static glm::vec4 color, imcolor = glm::vec4(1.0f);
 	static glm::vec3 position = { 0.0f, 0.0f, -200.0f };
 	static glm::vec3 rotation(0.0f);
+	static auto updateModel = [&]() {
+		glm::mat4 model(1.0f);
+		model = glm::translate(model, position);
+		model = glm::rotate(model, glm::radians(rotation.x), { 1.f, 0.f, 0.f });
+		model = glm::rotate(model, glm::radians(rotation.y), { 0.f, 1.f, 0.f });
+		model = glm::rotate(model, glm::radians(rotation.z), { 0.f, 0.f, 1.f });
+		model = glm::scale(model, glm::vec3(65.0f));
+		m_ResManager.getShader("basic")->use();
+		m_ResManager.getShader("basic")->setMat4("model", model);
+	};
 
+	m_ResManager.getShader("basic")->use();
 	glBindVertexArray(tVao);
 	glDrawArrays(GL_TRIANGLES, 0, 36);
 
@@ -135,7 +146,7 @@ void Application::render() {
 	ImGui_ImplGlfw_NewFrame();
 	ImGui::NewFrame();
 
-	// ImGui::ShowDemoWindow();
+	ImGui::ShowDemoWindow();
 
 	if (ImGui::Begin("Some variables")) {
 		if(ImGui::ColorEdit4("Clear Color", &color[0]))
@@ -144,16 +155,11 @@ void Application::render() {
 			m_ResManager.getShader("basic")->use();
 			m_ResManager.getShader("basic")->setVec4("imColor", imcolor);
 		}
-		if (ImGui::DragFloat3("Position", &position[0]) || ImGui::DragFloat3("Rotation", &rotation[0])) {
-			glm::mat4 model(1.0f);
-			model = glm::translate(model, position);
-			model = glm::rotate(model, glm::radians(rotation.x), { 1.f, 0.f, 0.f });
-			model = glm::rotate(model, glm::radians(rotation.y), { 0.f, 1.f, 0.f });
-			model = glm::rotate(model, glm::radians(rotation.z), { 0.f, 0.f, 1.f });
-			model = glm::scale(model, glm::vec3(65.0f));
-			m_ResManager.getShader("basic")->use();
-			m_ResManager.getShader("basic")->setMat4("model", model);
-		}
+		if (ImGui::DragFloat3("Position", &position[0]))
+			updateModel();
+		if (ImGui::DragFloat3("Rotation", &rotation[0]))
+			updateModel();
+		ImGui::Text("Time: %f (%f dt)", glfwGetTime(), dt);
 	}
 	ImGui::End();
 

@@ -21,5 +21,5 @@ public:
 
 	void handleEvents();
 	void update(double dt);
-	void render();
+	void render(double dt);
 };

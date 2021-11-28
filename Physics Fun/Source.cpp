@@ -51,7 +51,7 @@ int main() {
 
 		app->handleEvents();	// key and mouse input
 		app->update(dt);		// updates
-		app->render();			// rendering
+		app->render(dt);			// rendering
 
 		tprev = dt;
 	}
