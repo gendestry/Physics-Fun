@@ -1,5 +1,4 @@
 #pragma once
-#include <vector>
 #include <string>
 
 class Texture {
@@ -10,7 +9,7 @@ class Texture {
 	std::string m_Path;
 public:
 	//Texture();
-	Texture(std::string path);
+	Texture(const std::string& path);
 	~Texture();
 
 	void bind(int index);

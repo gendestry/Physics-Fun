@@ -6,7 +6,7 @@ Application::Application(unsigned int width, unsigned int height, GLFWwindow* wi
 
 	m_Projection = glm::perspective(m_FOV, (float)m_Width / (float)m_Height, 0.01f, 500.0f);
 
-	shader = new Shader("basic.vert", "basic.frag");
+	shader = new Shader("shaders/basic-vert.glsl", "shaders/basic-frag.glsl");
 	shader->setMat4("proj", m_Projection);
 	shader->setMat4("view", glm::mat4(1.0f));
 }
@@ -23,7 +23,8 @@ void Application::handleEvents() {
 }
 
 void Application::update() {
-	double tstart = glfwGetTime();
+	static double tprev = 0;
+	double time = glfwGetTime() - tprev;
 
 }
 
