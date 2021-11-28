@@ -11,8 +11,7 @@ uniform mat4 view;
 uniform mat4 proj;
 
 void main() {
-	vNormalPos = aNormalPos;
-	// vNormalPos = vec3(model * vec4(aNormalPos, 1.0));
+	vNormalPos = normalize(vec3(transpose(inverse(model)) * vec4(aNormalPos, 1.0)));
 	vTexCoord = aTexCoord;
 	gl_Position = proj * view * model * vec4(aVertexPos, 1.0);
 }
