@@ -14,11 +14,12 @@ private:
 
 	ResourceManager m_ResManager;
 
+	unsigned int tVao, tVbo, tEbo;
 public:
 	Application(unsigned int width, unsigned int height, GLFWwindow* window);
 	~Application();
 
 	void handleEvents();
-	void update();
+	void update(double dt);
 	void render();
 };

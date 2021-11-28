@@ -44,10 +44,16 @@ void init() {
 int main() {
 	init();
 
+	double dt;
+	double tprev = 0.0;
 	while (!glfwWindowShouldClose(window)) {
+		dt = glfwGetTime() - tprev;
+
 		app->handleEvents();	// key and mouse input
-		app->update();			// updates
+		app->update(dt);		// updates
 		app->render();			// rendering
+
+		tprev = dt;
 	}
 
 	delete app;
