@@ -1,7 +1,7 @@
 #pragma once
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
-#include "Shader.h"
+#include "ResourceManager.h"
 
 class Application {
 private:
@@ -12,7 +12,7 @@ private:
 	float m_FOV = 45.0f;
 	glm::mat4 m_Projection;
 
-	Shader* shader;
+	ResourceManager m_ResManager;
 
 public:
 	Application(unsigned int width, unsigned int height, GLFWwindow* window);

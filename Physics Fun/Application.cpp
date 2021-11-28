@@ -6,13 +6,13 @@ Application::Application(unsigned int width, unsigned int height, GLFWwindow* wi
 
 	m_Projection = glm::perspective(m_FOV, (float)m_Width / (float)m_Height, 0.01f, 500.0f);
 
-	shader = new Shader("shaders/basic-vert.glsl", "shaders/basic-frag.glsl");
-	shader->setMat4("proj", m_Projection);
-	shader->setMat4("view", glm::mat4(1.0f));
+	m_ResManager.addShader("basic", new Shader("shaders/basic-vert.glsl", "shaders/basic-frag.glsl"));
+	m_ResManager.getShader("basic")->setMat4("proj", m_Projection);
+	m_ResManager.getShader("basic")->setMat4("view", glm::mat4(1.0f));
 }
 
 Application::~Application() {
-	delete shader;
+	
 }
 
 void Application::handleEvents() {
