@@ -45,15 +45,16 @@ int main() {
 	init();
 
 	double dt;
-	double tprev = 0.0;
+	double tnow, tprev = 0.0;
 	while (!glfwWindowShouldClose(window)) {
-		dt = glfwGetTime() - tprev;
+		tnow = glfwGetTime();
+		dt = tnow - tprev;
 
 		app->handleEvents();	// key and mouse input
 		app->update(dt);		// updates
-		app->render(dt);			// rendering
+		app->render(dt);		// rendering
 
-		tprev = dt;
+		tprev = tnow;
 	}
 
 	delete app;
