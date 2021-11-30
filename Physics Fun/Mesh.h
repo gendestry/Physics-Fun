@@ -22,6 +22,7 @@ public:
 	Mesh(std::vector<Vertex> vertexes,  std::vector<unsigned int> indices);
 	~Mesh();
 
-	void render(Shader& shader);
+	void render();
+	//void render(Shader& shader);
 };
 

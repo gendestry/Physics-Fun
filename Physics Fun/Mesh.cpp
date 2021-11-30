@@ -30,7 +30,8 @@ Mesh::~Mesh() {
 	glDeleteVertexArrays(1, &m_Vao);
 }
 
-void Mesh::render(Shader& shader) {
+//void Mesh::render(Shader& shader) {
+void Mesh::render() {
 	/*shader.setVec3("diffuseColor", material.diffuseColor);
 	shader.setVec3("specularColor", material.specularColor);
 	shader.setInt("diffuseTex", 0);

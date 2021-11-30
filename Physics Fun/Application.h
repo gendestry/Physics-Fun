@@ -2,6 +2,7 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include "ResourceManager.h"
+#include "Mesh.h"
 
 class Application {
 private:
@@ -14,7 +15,8 @@ private:
 
 	ResourceManager m_ResManager;
 
-	unsigned int tVao, tVbo;
+	// temp
+	Mesh* cube;
 public:
 	Application(unsigned int width, unsigned int height, GLFWwindow* window);
 	~Application();
