@@ -9,6 +9,12 @@
 Application::Application(unsigned int width, unsigned int height, GLFWwindow* window)
 	: m_Width(width), m_Height(height), m_Window(window) {
 
+	// for setting dpi or scaling
+	float globalScale;
+	glfwGetWindowContentScale(window, &globalScale, &globalScale);
+
+
+
 	glfwSetWindowSizeCallback(window, [](GLFWwindow* window, int width, int height) {
 		// aspect ratio gre v kurac, add fix;
 		glViewport(0, 0, width, height);
@@ -79,6 +85,8 @@ Application::Application(unsigned int width, unsigned int height, GLFWwindow* wi
 	ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
 	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+	io.FontGlobalScale = globalScale;
+
 	ImGui::StyleColorsDark();
 	ImGui_ImplGlfw_InitForOpenGL(m_Window, true);
 	ImGui_ImplOpenGL3_Init("#version 330 core");
