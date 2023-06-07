@@ -9,4 +9,4 @@
 	url = https://github.com/glfw/glfw.git
 [submodule "dependencies/glad"]
 	path = dependencies/glad
-	url = https://github.com/anthofoxo/glad2-pregen.git
+	url = git@github.com:gendestry/glad-pregen.git

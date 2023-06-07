@@ -1,3 +1,4 @@
+# visual studio shit
 *.sln
 bin/
 bin-int/
@@ -5,4 +6,12 @@ bin-int/
 *.vcxproj.filters
 *.vcxproj.user
 .vs/
+
+# imgui ini
 imgui.ini
+
+# premake5 shit
+premake5
+premake5.exe
+example.so
+libluasocket.so
